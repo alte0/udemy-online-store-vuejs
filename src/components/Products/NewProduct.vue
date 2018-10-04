@@ -42,6 +42,7 @@
               name="description"
               label="Description product"
               type="text"
+              multi-line
               v-model="description"
               ></v-text-field>
           </v-form>
