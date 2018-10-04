@@ -97,41 +97,40 @@ export default {
           price: 1220,
           promo: true,
           imageSrc: 'https://image.ibb.co/jBZOMo/ASUS_TUF_Gaming_FX504_GD.jpg'
+        },
+        {
+          id: '4',
+          title: 'HP Omen 17',
+          vendor: 'Hp',
+          color: 'black',
+          material: 'metal/plastic',
+          description: 'Intel Core i7 7700HQ 2800 MHz/17.3"/1920x1080/12Gb/1128Gb HDD+SSD/DVD-RW/NVIDIA GeForce GTX 1060/Wi-Fi/Bluetooth/Windows 10 Home',
+          price: 1600,
+          promo: false,
+          imageSrc: 'https://image.ibb.co/g6czu8/HP_Omen_17.jpg'
+        },
+        {
+          id: '5',
+          title: 'Acer Swift 5 SF514',
+          vendor: 'Acer',
+          color: 'gold',
+          material: 'metal',
+          description: 'Intel Core i7 8550U 1800 MHz/14"/1920x1080/16Gb/512Gb SSD/DVD нет/Intel HD Graphics 620/Wi-Fi/Bluetooth/Windows 10 Home',
+          price: 1100,
+          promo: true,
+          imageSrc: 'https://image.ibb.co/mrOsgo/Acer_Swift_5.jpg'
+        },
+        {
+          id: '6',
+          title: 'Apple MacBook (MLHC2RU/A)',
+          vendor: 'Apple',
+          color: 'silver',
+          material: 'metal',
+          description: 'Intel Core m3 1200 MHz/12"/2304x1440/8Gb/256Gb SSD/DVD нет/Intel HD Graphics 615/Wi-Fi/Bluetooth/MacOS X',
+          price: 980,
+          promo: true,
+          imageSrc: 'https://image.ibb.co/fxDsgo/Apple_macbook.jpg'
         }
-        // ,
-        // {
-        //   id: '4',
-        //   title: 'HP Omen 17',
-        //   vendor: 'Hp',
-        //   color: 'black',
-        //   material: 'metal/plastic',
-        //   description: 'Intel Core i7 7700HQ 2800 MHz/17.3"/1920x1080/12Gb/1128Gb HDD+SSD/DVD-RW/NVIDIA GeForce GTX 1060/Wi-Fi/Bluetooth/Windows 10 Home',
-        //   price: 1600,
-        //   promo: false,
-        //   imageSrc: 'https://image.ibb.co/g6czu8/HP_Omen_17.jpg'
-        // },
-        // {
-        //   id: '5',
-        //   title: 'Acer Swift 5 SF514',
-        //   vendor: 'Acer',
-        //   color: 'gold',
-        //   material: 'metal',
-        //   description: 'Intel Core i7 8550U 1800 MHz/14"/1920x1080/16Gb/512Gb SSD/DVD нет/Intel HD Graphics 620/Wi-Fi/Bluetooth/Windows 10 Home',
-        //   price: 1100,
-        //   promo: true,
-        //   imageSrc: 'https://image.ibb.co/mrOsgo/Acer_Swift_5.jpg'
-        // },
-        // {
-        //   id: '6',
-        //   title: 'Apple MacBook (MLHC2RU/A)',
-        //   vendor: 'Apple',
-        //   color: 'silver',
-        //   material: 'metal',
-        //   description: 'Intel Core m3 1200 MHz/12"/2304x1440/8Gb/256Gb SSD/DVD нет/Intel HD Graphics 615/Wi-Fi/Bluetooth/MacOS X',
-        //   price: 980,
-        //   promo: true,
-        //   imageSrc: 'https://image.ibb.co/fxDsgo/Apple_macbook.jpg'
-        // }
       ]
     }
   }
