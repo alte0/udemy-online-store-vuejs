@@ -17,7 +17,10 @@
       </v-list>
     </v-navigation-drawer>
     <v-toolbar app dark color="primary">
-      <v-toolbar-side-icon @click="sideNav = !sideNav"></v-toolbar-side-icon>
+      <v-toolbar-side-icon
+        @click="sideNav = !sideNav"
+        class="hidden-md-and-up"
+        ></v-toolbar-side-icon>
       <v-toolbar-title>Online Store</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
