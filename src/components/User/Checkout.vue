@@ -37,24 +37,9 @@
 
 <script>
 export default {
-  data () {
-    return {
-      orders: [
-        {
-          id: 'test',
-          name: 'Vasya',
-          phone: '+7646',
-          productId: '1',
-          done: false
-        },
-        {
-          id: 'test2',
-          name: 'Vasya 2',
-          phone: '+7646345',
-          productId: '2',
-          done: false
-        }
-      ]
+  computed: {
+    orders () {
+      return this.$store.getters.orders
     }
   },
   methods: {
