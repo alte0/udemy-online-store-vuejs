@@ -3,7 +3,7 @@ import App from './App'
 import router from './router'
 import Vuetify from 'vuetify'
 import store from './store'
-import * as fb from 'firebase'
+import * as fb from 'firebase/app'
 import 'vuetify/dist/vuetify.min.css'
 
 Vue.use(Vuetify)
