@@ -35,6 +35,7 @@ export default {
   },
   computed: {
     error () {
+      console.log(this.$store.getters.error)
       return this.$store.getters.error
     }
   }
