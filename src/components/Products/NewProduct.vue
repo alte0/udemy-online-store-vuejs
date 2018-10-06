@@ -20,7 +20,7 @@
               ></v-text-field>
             <v-text-field
               name="color"
-              label="Vendor product"
+              label="Color product"
               type="text"
               v-model="color"
               ></v-text-field>
@@ -69,7 +69,8 @@
             <v-btn
               class="success"
               @click="createProduct"
-              :disabled="!valid"
+              :disabled="!valid || loading"
+              :loading="loading"
               >
               Create product
             </v-btn>
@@ -93,6 +94,11 @@ export default {
       promo: false
     }
   },
+  computed: {
+    loading () {
+      return this.$store.getters.loading
+    }
+  },
   methods: {
     createProduct () {
       if (this.$refs.form.validate()) {
@@ -103,9 +109,15 @@ export default {
           material: this.material,
           price: this.price,
           description: this.description,
-          promo: this.promo
+          promo: this.promo,
+          imageSrc: 'https://image.ibb.co/jBZOMo/ASUS_TUF_Gaming_FX504_GD.jpg'
         }
-        console.log(product)
+
+        this.$store.dispatch('createProduct', product)
+        .then(() => {
+          this.$router.push('/list')
+        })
+        .catch(() => {})
       }
     }
   }
