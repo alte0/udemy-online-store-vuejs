@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <section class="product mt-3 evation-10">
+    <section class="product mt-3 evation-10" v-if="!loading">
       <v-layout row wrap>
         <v-flex xs12 lg6>
           <img class="product_img" :src=product.imageSrc>
@@ -28,24 +28,46 @@
             <div class="title mb-5">
               <p class="product_title mb-2">{{ product.description }}
               </p>
-              <v-btn color="primary" class="heading">Edit</v-btn>
+              <app-edit-product :product="product"></app-edit-product>
               <v-btn color="primary" class="heading">Buy</v-btn>
             </div>
           </div>
         </v-flex>
       </v-layout>
     </section>
+    <section v-else class="text-xs-center">
+      <v-container>
+        <v-layout>
+          <v-flex xs12 class="text-xs-center pt-5">
+            <v-progress-circular
+              :size="100"
+              :width="4"
+              indeterminate
+              color="purple"
+              ></v-progress-circular>
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </section>
   </v-container>
 </template>
 
 <script>
+import EditProduct from './EditProduct'
+
 export default {
   props: ['id'],
   computed: {
     product () {
       const id = this.id
       return this.$store.getters.productById(id)
+    },
+    loading () {
+      return this.$store.getters.loading
     }
+  },
+  components: {
+    appEditProduct: EditProduct
   }
 }
 </script>
