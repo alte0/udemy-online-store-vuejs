@@ -48,14 +48,21 @@
           </v-form>
           <v-layout class="mb-3">
             <v-flex xs12>
-              <v-btn class="warning">
+              <v-btn class="warning" @click="upload">
                 Upload
                 <v-icon right dark>cloud_upload</v-icon>
               </v-btn>
+              <input
+                ref="fileInput"
+                type="file"
+                hidden
+                accept='image/*'
+                @change="onFileChange"
+                >
             </v-flex>
           </v-layout>
           <v-layout>
-            <img src="" height="200">
+            <img :src="imageSrc" height="200" v-if="imageSrc">
           </v-layout>
           <v-layout>
             <v-switch
@@ -69,7 +76,7 @@
             <v-btn
               class="success"
               @click="createProduct"
-              :disabled="!valid || loading"
+              :disabled="!valid || loading || !image"
               :loading="loading"
               >
               Create product
@@ -91,7 +98,9 @@ export default {
       material: '',
       price: 0,
       description: '',
-      promo: false
+      promo: false,
+      image: null,
+      imageSrc: ''
     }
   },
   computed: {
@@ -101,7 +110,7 @@ export default {
   },
   methods: {
     createProduct () {
-      if (this.$refs.form.validate()) {
+      if (this.$refs.form.validate() && this.image) {
         const product = {
           title: this.title,
           vendor: this.vendor,
@@ -110,7 +119,7 @@ export default {
           price: this.price,
           description: this.description,
           promo: this.promo,
-          imageSrc: 'https://image.ibb.co/jBZOMo/ASUS_TUF_Gaming_FX504_GD.jpg'
+          image: this.image
         }
 
         this.$store.dispatch('createProduct', product)
@@ -119,6 +128,18 @@ export default {
         })
         .catch(() => {})
       }
+    },
+    upload () {
+      this.$refs.fileInput.click()
+    },
+    onFileChange (event) {
+      const file = event.target.files[0]
+      const reader = new FileReader()
+      reader.onload = e => {
+        this.imageSrc = reader.result
+      }
+      reader.readAsDataURL(file)
+      this.image = file
     }
   }
 }

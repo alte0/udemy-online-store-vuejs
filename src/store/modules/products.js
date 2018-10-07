@@ -1,5 +1,6 @@
 import * as fb from 'firebase/app'
 import 'firebase/database'
+import 'firebase/storage'
 
 class Product {
   constructor (title, vendor, color, material, price, description, ownerId, imageSrc = '', promo = false, id = null) {
@@ -26,12 +27,20 @@ export default {
     },
     loadProducts (state, payload) {
       state.products = payload
+    },
+    updateProduct (state, {title, description, id}) {
+      const product = state.products.find(a => {
+        return a.id === id
+      })
+      product.title = title
+      product.description = description
     }
   },
   actions: {
     async createProduct ({commit, getters}, payload) {
       commit('clearError')
       commit('setLoading', true)
+      const image = payload.image
       try {
         const newProduct = new Product(
           payload.title,
@@ -41,19 +50,23 @@ export default {
           payload.price,
           payload.description,
           getters.user.id,
-          payload.imageSrc,
-          payload.promo
-          )
+          '',
+          payload.promo)
 
         const product = await fb.database().ref('products').push(newProduct)
+        const imageExt = image.name.slice(image.name.lastIndexOf('.'))
+        const fileData = await fb.storage().ref(`products/${product.key}.${imageExt}`).put(image)
+        const imageSrc = await fb.storage().ref().child(fileData.ref.fullPath).getDownloadURL()
+        await fb.database().ref('products').child(product.key).update({ imageSrc })
         // console.log(product)
         commit('setLoading', false)
         commit('createAddProduct', {
           ...newProduct,
-          id: product.key
+          id: product.key,
+          imageSrc
         })
       } catch (error) {
-        commit('setError', error.massage)
+        commit('setError', error.message)
         commit('setLoading', false)
         throw error
       }
@@ -87,6 +100,27 @@ export default {
       } catch (error) {
         commit('setError', error.message)
         commit('setLoading', false)
+        throw error
+      }
+    },
+    async updateProduct ({commit}, {title, description, id}) {
+      commit('clearError')
+      commit('setLoading', true)
+      try {
+        await fb.database().ref('products').child(id).update({
+          title,
+          description
+        })
+        commit('updateProduct', {
+          title,
+          description,
+          id
+        })
+        commit('setLoading', false)
+      } catch (error) {
+        commit('setError', error.message)
+        commit('setLoading', false)
+        throw error
       }
     }
   },
@@ -95,12 +129,14 @@ export default {
       return state.products
     },
     promoProducts (state) {
-      return state.products.filter(products => {
-        return products.promo
+      return state.products.filter(product => {
+        return product.promo
       })
     },
-    myProducts (state) {
-      return state.products
+    myProducts (state, getters) {
+      return state.products.filter(product => {
+        return product.ownerId === getters.user.id
+      })
     },
     productById (state) {
       return productId => {
