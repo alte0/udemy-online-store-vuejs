@@ -28,7 +28,9 @@
             <div class="title mb-5">
               <p class="product_title mb-2">{{ product.description }}
               </p>
-              <app-edit-product :product="product"></app-edit-product>
+              <app-edit-product
+                :product="product"
+                v-if="isOwner"></app-edit-product>
               <v-btn color="primary" class="heading">Buy</v-btn>
             </div>
           </div>
@@ -64,6 +66,9 @@ export default {
     },
     loading () {
       return this.$store.getters.loading
+    },
+    isOwner () {
+      return this.product.ownerId === this.$store.getters.user.id
     }
   },
   components: {
