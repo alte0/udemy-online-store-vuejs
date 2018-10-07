@@ -1,27 +1,20 @@
 export default {
   state: {
-    orders: [
-      {
-        id: 'test',
-        name: 'Vasya 1',
-        phone: '+3452 23 23 23',
-        productId: '1',
-        done: false
-      },
-      {
-        id: 'test2',
-        name: 'Vasya 2',
-        phone: '+7646345',
-        productId: '2',
-        done: false
-      }
-    ]
+    orders: []
   },
-  mutations: {},
-  actions: {},
-  getters: {
-    orders (state) {
-      return state.orders
+  mutations: {
+    createOrder (state, payload) {
+      state.orders.push(payload)
+    }
+  },
+  getters: {},
+  actions: {
+    async createOrder () {
+      await new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve()
+        }, 4000)
+      })
     }
   }
 }

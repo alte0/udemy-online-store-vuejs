@@ -51,7 +51,7 @@
               <v-btn dark color="light-blue darken-4 round outline"
                 :to="'/product/' + product.id"
                 >description</v-btn>
-              <v-btn dark color="light-blue darken-4">Add to card</v-btn>
+              <app-buy-dialog :product="product"></app-buy-dialog>
             </v-card-actions>
           </v-card>
       </v-flex>

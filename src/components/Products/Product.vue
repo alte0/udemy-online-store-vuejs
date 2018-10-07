@@ -31,7 +31,7 @@
               <app-edit-product
                 :product="product"
                 v-if="isOwner"></app-edit-product>
-              <v-btn color="primary" class="heading">Buy</v-btn>
+              <app-buy-dialog :product="product"></app-buy-dialog>
             </div>
           </div>
         </v-flex>
