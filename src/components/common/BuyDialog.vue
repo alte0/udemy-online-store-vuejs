@@ -4,7 +4,6 @@
       dark
       color="light-blue darken-4"
       round
-      class="primary"
       slot="activator"
       >Bue</v-btn>
       <v-card>
@@ -85,7 +84,7 @@ export default {
         this.$store.dispatch('createOrder', {
           name: this.name,
           phone: this.phone,
-          productId: this.productId,
+          productId: this.product.id,
           ownerId: this.product.ownerId
         })
         .finally(() => {
