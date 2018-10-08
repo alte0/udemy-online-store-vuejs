@@ -40,15 +40,14 @@
               <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn
-                  dark
-                  color="light-blue barken-4"
+                  flat
                   outline
                   @click="onCancel"
                   :disabled="localLoading"
                   >Close</v-btn>
                 <v-btn
-                  dark
-                  color="light-blue barken-4"
+                  flat
+                  class="success"
                   @click="onSave"
                   :disabled="localLoading"
                   :loading="localLoading"
